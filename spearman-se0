@@ -1,0 +1,88 @@
+# ============================================
+# 🔹 1️⃣ Install & Setup Library
+# ============================================
+!pip install --quiet gspread gspread_dataframe google-auth scipy
+
+import gspread
+from google.colab import auth
+from google.auth import default
+import pandas as pd
+from gspread_dataframe import get_as_dataframe
+from scipy.stats import spearmanr
+import matplotlib.pyplot as plt
+
+# Autentikasi akun Google
+auth.authenticate_user()
+creds, _ = default()
+gc = gspread.authorize(creds)
+
+# ============================================
+# 🔹 2️⃣ Ambil Data dari Google Spreadsheet
+# ============================================
+SHEET_ID = "1gPe0CDcRzkb4wfbddPDTf6H00l2hTnCo-mfOvSoQzYQ"
+SHEET_NAME = "kampung-inggris-uji"
+
+worksheet = gc.open_by_key(SHEET_ID).worksheet(SHEET_NAME)
+df = get_as_dataframe(worksheet, evaluate_formulas=True, header=0)
+
+print("✅ Data berhasil diambil dari Google Sheets:")
+display(df.head())
+print("Jumlah kolom:", len(df.columns))
+print("Kolom:", df.columns.tolist())
+
+# ============================================
+# 🔹 3️⃣ Persiapan Data
+# ============================================
+# Pastikan kolom Rank numerik
+df = df.dropna(subset=['Rank'])
+df['Rank'] = pd.to_numeric(df['Rank'], errors='coerce')
+
+# Ambil hanya kolom numerik
+num_df = df.select_dtypes(include=['number']).dropna(how='all')
+
+# ============================================
+# 🔹 4️⃣ Hitung Korelasi Spearman & p-value
+# ============================================
+results = []
+for col in num_df.columns:
+    if col != 'Rank':
+        valid = num_df[['Rank', col]].dropna()
+        if len(valid) > 1:
+            coef, p = spearmanr(valid['Rank'], valid[col])
+            results.append((col, coef, p))
+
+corr_df = pd.DataFrame(results, columns=['Metric', 'Spearman', 'p-value']).sort_values('Spearman')
+
+# ============================================
+# 🔹 5️⃣ Interpretasi Korelasi
+# ============================================
+def interpret_corr(value):
+    if pd.isna(value):
+        return "-"
+    direction = "baik (berbanding terbalik dengan Rank)" if value < 0 else "kurang baik (berbanding lurus dengan Rank)"
+    strength = (
+        "lemah" if abs(value) < 0.3 else
+        "sedang" if abs(value) < 0.6 else
+        "kuat"
+    )
+    return f"{strength}, {direction}"
+
+corr_df['Interpretasi'] = corr_df['Spearman'].apply(interpret_corr)
+
+# ============================================
+# 🔹 6️⃣ Tampilkan Hasil
+# ============================================
+print("📊 Hasil Korelasi Spearman (semakin negatif = semakin baik):")
+display(corr_df)
+
+# ============================================
+# 🔹 7️⃣ Visualisasi
+# ============================================
+plt.figure(figsize=(10,6))
+plt.barh(corr_df['Metric'], corr_df['Spearman'], color='skyblue')
+plt.axvline(0, color='black', linestyle='--')
+plt.title('Korelasi Spearman terhadap Rank')
+plt.xlabel('Koefisien Korelasi Spearman')
+plt.ylabel('Metric SEO')
+plt.tight_layout()
+plt.show()
