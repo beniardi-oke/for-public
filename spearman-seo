@@ -11,7 +11,7 @@ from gspread_dataframe import get_as_dataframe
 from scipy.stats import spearmanr
 import matplotlib.pyplot as plt
 
-# Autentikasi akun Google
+# Autentikasi akun Google untuk akses Spreadsheet
 auth.authenticate_user()
 creds, _ = default()
 gc = gspread.authorize(creds)
