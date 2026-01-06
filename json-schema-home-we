@@ -1,0 +1,141 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+
+    /* ===========================
+       1. ORGANIZATION PROFILE
+    ============================*/
+    {
+      "@type": "EducationalOrganization",
+      "@id": "https://www.kampunginggris.online/#org",
+      "name": "Kampung Inggris World English (WE)",
+      "alternateName": "Kampung Inggris",
+      "description": "World English (WE) adalah lembaga kursus Bahasa Inggris terkemuka di Kampung Inggris Pare yang menyediakan kelas offline dan online.",
+      "url": "https://kampunginggris.online",
+      "telephone": "+6282112333666",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Sakura No.4, Mangunrejo, Tulungrejo",
+        "addressLocality": "Pare",
+        "addressRegion": "East Java",
+        "postalCode": "64212",
+        "addressCountry": "ID"
+      },
+      "openingHours": "Mo-Su 00:00-23:59",
+      "makesOffer": [
+        "#course-speaking",
+        "#course-ramadhan",
+        "#course-toefl",
+        "#course-master",
+        "#course-online"
+      ]
+    },
+
+    /* ===========================
+       2. COURSE LIST
+    ============================*/
+
+    {
+      "@type": "Course",
+      "@id": "#course-speaking",
+      "name": "Program Integrated Speaking",
+      "description": "Program Speaking intensif 6x pertemuan per hari. Durasi 2 minggu hingga 3 bulan.",
+      "provider": {"@id": "https://www.kampunginggris.online/#org"},
+      "offers": [
+        {"@type": "Offer","name": "2 Minggu","price": "890000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "1 Bulan","price": "1480000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "2 Bulan","price": "2850000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "3 Bulan","price": "3970000","priceCurrency": "IDR"}
+      ]
+    },
+
+    {
+      "@type": "Course",
+      "@id": "#course-ramadhan",
+      "name": "Program English Ramadhan",
+      "description": "Program English Ramadhan dengan durasi 1-4 minggu. Termasuk makan 3x sehari dan laundry.",
+      "provider": {"@id": "https://www.kampunginggris.online/#org"},
+      "offers": [
+        {"@type": "Offer","name": "1 Minggu","price": "1182000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "2 Minggu","price": "1920000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "3 Minggu","price": "2520000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "1 Bulan","price": "3300000","priceCurrency": "IDR"}
+      ]
+    },
+
+    {
+      "@type": "Course",
+      "@id": "#course-toefl",
+      "name": "Program TOEFL 500++",
+      "description": "Kursus persiapan TOEFL intensif untuk mencapai skor 500++.",
+      "provider": {"@id": "https://www.kampunginggris.online/#org"},
+      "offers": [
+        {"@type": "Offer","name": "2 Minggu","price": "1200000","priceCurrency": "IDR"},
+        {"@type": "Offer","name": "1 Bulan","price": "1850000","priceCurrency": "IDR"}
+      ]
+    },
+
+    {
+      "@type": "Course",
+      "@id": "#course-master",
+      "name": "Program English Master",
+      "description": "Program 4 bulan dari dasar hingga mahir, termasuk praktek ke Bali dan kelas intensif.",
+      "provider": {"@id": "https://www.kampunginggris.online/#org"},
+      "offers": [
+        {"@type": "Offer","name": "4 Bulan","price": "5150000","priceCurrency": "IDR"}
+      ]
+    },
+
+    {
+      "@type": "Course",
+      "@id": "#course-online",
+      "name": "Kelas Online World English",
+      "description": "Kelas online Bahasa Inggris dari level dasar hingga mahir.",
+      "provider": {"@id": "https://www.kampunginggris.online/#org"}
+    },
+
+    /* ===========================
+       3. CREATIVEWORK (MAIN SITE)
+    ============================*/
+    {
+      "@type": "CreativeWork",
+      "@id": "https://www.kampunginggris.online/",
+      "name": "KAMPUNG INGGRIS OFFICIAL PENDAFTARAN",
+      "url": "https://www.kampunginggris.online/",
+      "isPartOf": [
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/fasilitas/"},
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/kurikulum/"},
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/biaya-dan-program/"},
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/tutor/"},
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/alumni/"},
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/lembaga/"},
+        {"@type": "CreativeWork","@id": "https://www.kampunginggris.online/blog/"}
+      ]
+    },
+
+    /* ===========================
+       4. WEBPAGE SCHEMA
+    ============================*/
+    {
+      "@type": "WebPage",
+      "@id": "https://www.kampunginggris.online/#webpage",
+      "url": "https://www.kampunginggris.online/",
+      "headline": "KAMPUNG INGGRIS OFFICIAL PENDAFTARAN",
+      "description": "Kampung Inggris merupakan kawasan dengan banyak lembaga kursus Bahasa Inggris yang menyediakan lingkungan belajar intensif.",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Kampung Inggris",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/English_village",
+            "https://id.wikipedia.org/wiki/Kampung_Inggris_Pare",
+            "https://www.wikidata.org/wiki/Q56412862"
+          ]
+        }
+      ]
+    }
+
+  ]
+}
+</script>
